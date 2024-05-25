@@ -5,6 +5,7 @@ pipeline {
         }
     }
     stages {
+        stage ('run tests'){
         parallel{
         stage('Backend Tests') {
             steps {
@@ -16,6 +17,7 @@ pipeline {
                 sh 'node ./frontend/test.js'
             }
         }
+    }
     }
     }
 }
