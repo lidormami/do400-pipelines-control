@@ -1,11 +1,19 @@
-node ('nodejs'){
-  stage ('checkout'){
-    git branch: 'main', url: 'git@github.com:lidormami/do400-pipelines-control.git'
-}
-  stage ('backend test'){
-    sh 'node ./backend/test.js'
-}
-stage ('frontend test'){
-    sh 'node ./frontend/test.js'
-}
+pipeline {
+    agent {
+        node {
+            label 'nodejs'
+        }
+    }
+    stages {
+        stage('Backend Tests') {
+            steps {
+                sh 'node ./backend/test.js'
+            }
+        }
+        stage('Frontend Tests') {
+            steps {
+                sh 'node ./frontend/test.js'
+            }
+        }
+    }
 }
